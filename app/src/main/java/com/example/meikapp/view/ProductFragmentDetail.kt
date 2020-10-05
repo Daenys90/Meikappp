@@ -6,16 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.meikapp.R
 import com.example.meikapp.model.api.Product
 import com.example.meikapp.viewmodel.MakeUpViewModel
-import kotlinx.android.synthetic.main.product_fragment.*
+import kotlinx.android.synthetic.main.fragment_main.*
 import java.nio.channels.Selector
 
-class ProductFragment : Fragment() {
+class ProductFragmentDetail : Fragment() {
 
     companion object {
-        fun newInstance() = ProductFragment()
+        fun newInstance() = ProductFragmentDetail()
     }
 
     private var adapter = MakeUpAdapter(mutableListOf())
@@ -26,11 +27,15 @@ class ProductFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.product_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        btn_ir_detalles.setOnClickListener{
+            findNavController().navigate(R.id.productFragmentDetail)
+        }
 
         var mRecycler = makeUpRecycler
         mRecycler.adapter = adapter

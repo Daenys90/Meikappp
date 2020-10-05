@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.meikapp.R
 import com.example.meikapp.model.api.Product
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.product_item.view.*
+import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class MakeUpAdapter(private var productDataSet: MutableList<Product>) :
     RecyclerView.Adapter<MakeUpAdapter.MakeUpViewHolder>() {
@@ -18,7 +18,7 @@ class MakeUpAdapter(private var productDataSet: MutableList<Product>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MakeUpViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.product_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.fragment_main, parent, false)
         return MakeUpViewHolder(view)
     }
 
@@ -35,13 +35,12 @@ class MakeUpAdapter(private var productDataSet: MutableList<Product>) :
     }
     class MakeUpViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textProduct = itemView.textView
-        val imageProduct = itemView.imageView
     }
 
     override fun onBindViewHolder(holder: MakeUpViewHolder, position: Int) {
         holder.textProduct.text = productDataSet.get(position).name
 
-        Picasso.get().load(productDataSet.get(position).api_featured_image).into(holder.imageProduct)
+     //   Picasso.get().load(productDataSet.get(position).api_featured_image).into(holder.imageProduct)
 
         holder.itemView.setOnClickListener() {
             Log.d("Click", "$productDataSet.get(position)}")

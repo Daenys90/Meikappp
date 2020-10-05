@@ -3,7 +3,7 @@ package com.example.meikapp.model.api
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-const val BASE_URL = "http://makeup-api.herokuapp.com/api/v1/products.json"
+const val BASE_URL = "http://makeup-api.herokuapp.com/"
 
 class RetrofitClient {
     companion object{
