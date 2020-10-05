@@ -12,6 +12,7 @@ import com.example.meikapp.model.api.Product
 import com.example.meikapp.viewmodel.MakeUpViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.nio.channels.Selector
+import java.util.Observer
 
 class ProductFragmentDetail : Fragment() {
 
@@ -33,16 +34,33 @@ class ProductFragmentDetail : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btn_ir_detalles.setOnClickListener{
-            findNavController().navigate(R.id.productFragmentDetail)
-        }
-
         var mRecycler = makeUpRecycler
         mRecycler.adapter = adapter
 
         viewModel.allProduct.observe(viewLifecycleOwner, androidx.lifecycle.Observer { products ->
-           val p = products.map { Product(it.id, it.brand, it.name, it.price, it.price_sign, it.currency, it.link, it.description, it.rating, it.product_type, it.category, it.tag_list, it.created_at, it.updated_at, it.product_api_url, it.api_featured_image, it.product_colors) }
+            val p = products.map {
+                Product(
+                    it.id,
+                    it.brand,
+                    it.name,
+                    it.price,
+                    it.price_sign,
+                    it.currency,
+                    it.link,
+                    it.description,
+                    it.rating,
+                    it.product_type,
+                    it.category,
+                    it.tag_list,
+                    it.created_at,
+                    it.updated_at,
+                    it.product_api_url,
+                    it.api_featured_image,
+                    it.product_colors
+                )
+            }
             adapter.updateItems(p)
         })
     }
+
 }

@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [ProductEntity::class], version = 1)
+@Database(entities = [ProductEntity::class], version = 1, exportSchema = false)
 @TypeConverters(TagListTypeConverter::class)
 abstract class MakeUpDatabase : RoomDatabase() {
 

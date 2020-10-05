@@ -10,6 +10,7 @@ import com.example.meikapp.R
 import com.example.meikapp.model.api.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_main.view.*
+import kotlinx.android.synthetic.main.product_item.view.*
 
 class MakeUpAdapter(private var productDataSet: MutableList<Product>) :
     RecyclerView.Adapter<MakeUpAdapter.MakeUpViewHolder>() {
@@ -34,7 +35,7 @@ class MakeUpAdapter(private var productDataSet: MutableList<Product>) :
         }
     }
     class MakeUpViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textProduct = itemView.textView
+        var textProduct = itemView.textProduct
     }
 
     override fun onBindViewHolder(holder: MakeUpViewHolder, position: Int) {
@@ -48,4 +49,3 @@ class MakeUpAdapter(private var productDataSet: MutableList<Product>) :
     }
 
 }
-

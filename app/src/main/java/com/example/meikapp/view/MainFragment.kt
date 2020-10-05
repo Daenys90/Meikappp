@@ -8,11 +8,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.meikapp.R
+import com.example.meikapp.model.api.Product
+import com.example.meikapp.model.db.ProductEntity
 import com.example.meikapp.viewmodel.MakeUpViewModel
+import kotlinx.android.synthetic.main.fragment_bienvenida.*
 import kotlinx.android.synthetic.main.fragment_main.*
 
-class MainFragment : Fragment(R.layout.fragment_main), MakeUpAdapter.OnClickListener {
-    private val viewModel by activityViewModels<MakeUpViewModel()
+class MainFragment : Fragment(R.layout.fragment_main) {
+    private var productList = ArrayList<Product>()
+
+    //    private val viewModel by activityViewModels<MakeUpViewModel()
     private lateinit var makeUpAdapter: MakeUpAdapter
 
 
@@ -20,24 +25,31 @@ class MainFragment : Fragment(R.layout.fragment_main), MakeUpAdapter.OnClickList
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
 
-        makeUpAdapter = MakeUpAdapter(requireContext(), this)
-    }
+        makeUpAdapter = MakeUpAdapter(
+            productList
+        )
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_bienvenida, container, false)
-    }
+        ir_a_detalles.setOnClickListener {
+            findNavController().navigate(R.id.productFragmentDetail)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        }
 
-        val binding = FragmentMainBinding.bind(view)
+        fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            return inflater.inflate(R.layout.fragment_bienvenida, container, false)
+        }
+
+        fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+            /*     val binding = FragmentMainBinding.bind(view)
 
         binding.searchView.onQueryTextChanged {
             viewModel.setProduct(it)
         }
-
+*/
+        }
     }
 }
